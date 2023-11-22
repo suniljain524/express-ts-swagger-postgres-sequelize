@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Express TypeScript API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "email": "john.doe@example.com"
+                  },
+                  {
+                    "id": 2,
+                    "firstName": "Jane",
+                    "lastName": "Doe",
+                    "email": "jane.doe@example.com"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 3,
+                  "firstName": "New",
+                  "lastName": "User",
+                  "email": "new.user@example.com"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
